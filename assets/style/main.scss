@@ -1,0 +1,9 @@
+.home-body {
+  max-width: 1200px;
+  margin: 10px auto;
+}
+@media all and (max-width: 767px){
+    html {
+        font-size: 20px;
+    }
+}

@@ -53,10 +53,6 @@ export default {};
 </script>
 
 <style>
-.home-body {
-  max-width: 1200px;
-  margin: 10px auto;
-}
 .product-center {
   background-color: pink;
 }

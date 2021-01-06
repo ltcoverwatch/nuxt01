@@ -3,6 +3,7 @@
     <nav-top></nav-top>
     <home-carousel></home-carousel>
     <home-body></home-body>
+    <footer-bottom></footer-bottom>
   </div>
 </template>
 
@@ -13,7 +14,6 @@ import Vue from "vue";
 export default Vue.extend({});
 </script>
 
-<style>
-</style>
+<style></style>
 
 HomeCarousel

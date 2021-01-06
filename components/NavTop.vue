@@ -11,7 +11,7 @@
         <!-- <img src="../assets/chemicon-icon.png" alt="" class="brand-pic" /> -->
         aa
       </el-menu-item>
-      <template v-for="nav in navObjList">
+      <template v-for="nav in pcNavList">
         <el-submenu
           :index="nav.url"
           v-if="nav.children.length != 0"
@@ -30,6 +30,7 @@
         }}</el-menu-item>
       </template>
     </el-menu>
+    <p>{{ screenWidth }}</p>
   </div>
 </template>
 
@@ -37,6 +38,7 @@
 export default {
   data() {
     return {
+      screenWidth: 0,
       activeIndex: "1",
       activeIndex2: "1",
       navObjList: [
@@ -63,9 +65,39 @@ export default {
           navId: 3,
           navName: "About",
           url: "/about",
-          children: []
+          children: [],
         },
       ],
+    };
+  },
+  computed: {
+    pcNavList: function () {
+      // console.log(this.pcNavList);
+      return this.screenWidth >= 768 ? this.navObjList : [];
+    },
+    mobileNavList: function () {
+      return this.screenWidth < 768 ? this.navObjList : [];
+    },
+  },
+  watch: {
+    screenWidth(newValue) {
+      // 为了避免频繁触发resize函数导致页面卡顿，使用定时器
+      if (!this.timer) {
+        // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
+        this.screenWidth = newValue;
+        this.timer = true;
+        setTimeout(() => {
+          //console.log(this.screenWidth);
+          this.timer = false;
+        }, 400);
+      }
+    },
+  },
+  created() {},
+  mounted() {
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      this.screenWidth = document.body.clientWidth;
     };
   },
   methods: {
